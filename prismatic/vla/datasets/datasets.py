@@ -68,6 +68,7 @@ class RLDSBatchTransform:
 
 
 class RLDSDataset(IterableDataset):
+
     def __init__(
         self,
         data_root_dir: Path,
@@ -77,6 +78,7 @@ class RLDSDataset(IterableDataset):
         shuffle_buffer_size: int = 256_000,
         train: bool = True,
         image_aug: bool = False,
+        camera_view_name: str = "primary",
     ) -> None:
         """Lightweight wrapper around RLDS TFDS Pipeline for use with PyTorch/OpenVLA Data Loaders."""
         self.data_root_dir, self.data_mix, self.batch_transform = data_root_dir, data_mix, batch_transform
@@ -92,7 +94,7 @@ class RLDSDataset(IterableDataset):
         per_dataset_kwargs, weights = get_oxe_dataset_kwargs_and_weights(
             self.data_root_dir,
             mixture_spec,
-            load_camera_views=("primary",),
+            load_camera_views=(camera_view_name,),
             load_depth=False,
             load_proprio=False,
             load_language=True,
