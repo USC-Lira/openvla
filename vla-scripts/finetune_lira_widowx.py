@@ -78,15 +78,15 @@ class FinetuneConfig:
     vla_path: str = "openvla/openvla-7b"                            # Path to OpenVLA model (on HuggingFace Hub)
 
     # Directory Paths
-    data_root_dir: Path = Path("/home/jesse/jesse_datasets/")        # Path to Open-X dataset directory
-    dataset_name: str = "bridge_88_trajs"                                # Name of fine-tuning dataset (e.g., `droid_wipe`)
+    data_root_dir: Path = Path("/home/jesse/jesse_rlds_data/")        # Path to Open-X dataset directory
+    dataset_name: str = "bridge_160_trajs"                                # Name of fine-tuning dataset (e.g., `droid_wipe`)
     run_root_dir: Path = Path("runs")                               # Path to directory to store logs & checkpoints
     adapter_tmp_dir: Path = Path("adapter-tmp")                     # Temporary directory for LoRA weights before fusing
 
     # Fine-tuning Parameters
     batch_size: int = 2                                             # Fine-tuning batch size
     max_steps: int = 200_000                                        # Max number of fine-tuning steps
-    save_steps: int = 5_000                                          # Interval for checkpoint saving
+    save_steps: int = 10_000                                        # Interval for checkpoint saving
     learning_rate: float = 2e-5                                     # Fine-tuning learning rate
     grad_accumulation_steps: int = 1                                # Gradient accumulation steps
     image_aug: bool = True                                          # Whether to train with image augmentations
